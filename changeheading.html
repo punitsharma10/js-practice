@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>change name</title>
+</head>
+<body>
+    <h1 id="head">Punit Sharma</h1>
+    <button onclick="changename()">change</button>
+</body>
+</html>
+<script>
+    function changename() {
+        var p =document.getElementById("head");
+        if(p.textContent === "Paras Sharma")
+        {
+            p.textContent="Punit Sharma";
+        }
+        else
+        {
+            p.textContent="Paras Sharma";
+        }
+    }
+</script>
