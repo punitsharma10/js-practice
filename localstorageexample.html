@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>local storage</title>
+</head>
+<body>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBvfLe4EyWoztTqOmuDDMa0l6E6cqIULpGrQ&usqp=CAU" alt="">
+    <div>
+        <p>Likes--<span id="likes"></span></p>
+        <p>Dislikes--<span id="dislikes"></span></p>
+    </div>
+    <br>
+    <button id="likebtn">Like</button>
+    <button id="dislikebtn">Dislike</button>
+</body>
+</html>
+<script>
+    document.getElementById("likebtn").addEventListener("click",likecount);
+    var count=localStorage.getItem("likes") || 0;
+    var punit=document.getElementById("likes");
+        punit.textContent=count;
+    function likecount(){
+        count++;
+        var punit=document.getElementById("likes");
+        punit.textContent=count;
+        localStorage.setItem("likes",count);
+    }
+    document.getElementById("dislikebtn").addEventListener("click",dislikecount);
+    var discount=localStorage.getItem("dislikes") || 0;
+    var paras=document.getElementById("dislikes");
+        paras.textContent=discount;
+    function dislikecount(){
+        discount++;
+        var paras=document.getElementById("dislikes");
+        paras.textContent=discount;
+        localStorage.setItem("dislikes",discount);
+    }
+</script>
