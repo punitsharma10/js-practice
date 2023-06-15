@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ECommerce Products</title>
+  <style>
+    .product {
+      display: inline-block;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+    }
+    .sold {
+      background-color: red;
+      color: white;
+    }
+    .available {
+      background-color: green;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Product Listing</h1>
+  <div id="counter">Total Products: 0</div>
+  <div id="products"></div>
+
+ 
+</body>
+</html>
+<script>
+// Fetch products from local storage
+function getProducts() {
+  var products = localStorage.getItem('Products');
+  return products ? JSON.parse(products) : [];
+}
+
+// Save products to local storage
+function saveProducts(products) {
+  localStorage.setItem('Products', JSON.stringify(products));
+}
+
+// Remove product from the database
+function removeProduct(index) {
+  var products = getProducts();
+  products.splice(index, 1);
+  saveProducts(products);
+}
+
+// Toggle sold status of a product
+function toggleSold(index) {
+  var products = getProducts();
+  products[index].sold = !products[index].sold;
+  saveProducts(products);
+}
+
+// Render products on the page
+function renderProducts() {
+  var productsContainer = document.getElementById('products');
+  var products = getProducts();
+  productsContainer.innerHTML = '';
+
+  products.forEach(function(product, index) {
+    var productElement = document.createElement('div');
+    productElement.className = 'product';
+    productElement.innerHTML = `
+      <h3>${product.name}</h3>
+      <p>Category: ${product.category}</p>
+      <img src="${product.image}" alt="${product.name}">
+      <p>Price: $${product.price}</p>
+      <p>Gender: ${product.gender}</p>
+      <button class="${product.sold ? 'sold' : 'available'}" id="sold-${index}">${product.sold ? 'Sold' : 'Available'}</button>
+      <button id="remove-${index}">Remove</button>
+    `;
+
+    productElement.querySelector(`#sold-${index}`).addEventListener('click', function() {
+      toggleSold(index);
+      renderProducts();
+    });
+
+    productElement.querySelector(`#remove-${index}`).addEventListener('click', function() {
+      removeProduct(index);
+      renderProducts();
+    });
+
+    productsContainer.appendChild(productElement);
+  });
+  
+  // Update the counter
+  var counterElement = document.getElementById('counter');
+  counterElement.textContent = `Total Products: ${products.length}`;
+}
+renderProducts();
+
+</script>

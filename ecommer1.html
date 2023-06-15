@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <form id="productForm">
+      <label for="name">Product Name:</label>
+      <input type="text" id="name" required><br>
+  
+      <label for="category">Category:</label>
+      <input type="text" id="category" required><br>
+  
+      <label for="image">Image URL:</label>
+      <input type="text" id="image" required><br>
+  
+      <label for="price">Price:</label>
+      <input type="number" id="price" required><br>
+  
+      <label for="gender">Gender:</label>
+      <select id="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="unisex">Unisex</option>
+      </select><br>
+  
+      <label for="sold">Sold:</label>
+      <input type="checkbox" id="sold"><br>
+  
+      <input type="submit" value="Add Product" id="add">
+    </form>
+</body>
+</html>
+<script>
+    // Constructor function for Product
+function Product(name, category, image, price, gender, sold) {
+  this.name = name;
+  this.category = category;
+  this.image = image;
+  this.price = price;
+  this.gender = gender;
+  this.sold = sold || false; // default value is false
+}
+
+// Function to handle form submission
+function handleSubmit(event) {
+  event.preventDefault(); // prevent form submission
+
+  // Get input values
+  var name = document.getElementById('name').value;
+  var category = document.getElementById('category').value;
+  var image = document.getElementById('image').value;
+  var price = parseFloat(document.getElementById('price').value);
+  var gender = document.getElementById('gender').value;
+  var sold = document.getElementById('sold').checked;
+
+  // Create a new Product object
+  var product = new Product(name, category, image, price, gender, sold);
+
+  // Get existing products from local storage or initialize an empty array
+  var products = JSON.parse(localStorage.getItem('Products')) || [];
+
+  // Add the new product to the array
+  products.push(product);
+
+  // Store the updated array back in local storage
+  localStorage.setItem('Products', JSON.stringify(products));
+
+  // Clear the form inputs
+  document.getElementById('name').value = '';
+  document.getElementById('category').value = '';
+  document.getElementById('image').value = '';
+  document.getElementById('price').value = '';
+  document.getElementById('gender').value = 'male';
+  document.getElementById('sold').checked = false;
+
+  // Show success message (optional)
+  alert('Product added successfully!');
+}
+
+// Attach event listener to the form submit event
+var form = document.getElementById('productForm');
+form.addEventListener('submit', handleSubmit);
+
+</script>

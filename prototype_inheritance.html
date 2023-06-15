@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prototype</title>
+</head>
+<body>
+    <h1>prototype</h1>
+</body>
+</html>
+<script>
+    // function Person(name,age,city)
+    // {
+    //     this.name=name
+    //     this.age=age
+    // }
+    // Person.prototype.setCity=function(city)
+    // {
+    //     this.city=city
+    // }
+    // var person1=new Person('punit',21)
+    // person1.setCity('Agra')
+    // console.log('person1:',person1)
+    // var person2=new Person('ashish',20)
+    // person2.setCity('Agra')
+    // console.log('person2:',person2)
+    // var person3=new Person('umang',21)
+    // person3.setCity('Agra')
+    // console.log('person3:',person3)
+    // var person4=new Person('shivansh',21)
+    // person4.setCity('Agra')
+    // console.log('person4:',person4)
+
+
+
+                 // proto---->Access this property to konw the properties of the data
+
+        //  var obj1={
+        //     a:5,
+        //     b:15,
+        //  }       
+        //  console.log(obj1)
+        //  console.log(obj1.__proto__.__proto__) 
+
+        //   js constructor inheritance
+
+        function Person(firstName,lastName)
+         {
+			this.firstName=firstName
+			this.lastName=lastName
+		}
+		Person.prototype.displayFullName=function ()
+         {
+			console.log(this.firstName + ' ' + this.lastName)
+		}
+
+		let person1=new Person('Punit','Sharma')
+		console.log(person1)
+
+		function Student(firstName,lastName,batchNo,techStack) 
+        {
+			Person.call(this,firstName,lastName)
+			this.batchNo=batchNo
+			this.techStack=techStack
+		}
+
+		Object.setPrototypeOf(Student.prototype,Person.prototype)
+
+		let student1=new Student('Paras','Sharma',12,'MERN')
+		console.log(student1.batchNo+' '+student1.techStack)
+		student1.displayFullName()
+</script>

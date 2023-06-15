@@ -1,0 +1,187 @@
+/ create Weather Constructor Object
+
+// function Weather() {}
+
+
+
+// Define a display() method for the Weather object
+
+
+
+// Define a constructor for an Sunny object that inherits from Weather
+
+
+
+// create Sunny Constructor Object
+
+// function Sunny() {}
+
+// Set up prototype inheritance for Sunny
+
+
+
+// Define a display() method for the Sunny object
+
+
+
+// Define a constructor for a Sunny object that inherits from Weather
+
+
+
+// create Rainy Constructor Object
+
+// function Rainy() {}
+
+// Set up prototype inheritance for Rainy
+
+
+
+// Define a display() method for the Rainy object
+
+
+
+// Define a constructor for a Runner object that inherits from Weather
+
+
+
+// !Note : Do not remove the following export statement
+
+// create Weather Constructor Object
+
+
+
+function Weather(location, temperature, conditions) {
+
+ this.location = location;
+
+
+
+ this.temperature = temperature;
+
+
+
+ this.conditions = conditions;
+
+}
+
+
+
+// Define a display() method for the Weather object
+
+
+
+Weather.prototype.display = function () {
+
+ return `current weather conditions for location ${this.location} having temperature ${this.temperature} degrees and weather condition is ${this.conditions}`;
+
+};
+
+
+
+
+
+// Define a constructor for an Sunny object that inherits from Weather
+
+
+
+function Sunny(location, temperature, conditions = "sunny") {
+
+ Weather.call(this, location, temperature, conditions);
+
+}
+
+
+
+// Set up prototype inheritance for Sunny
+
+
+
+Sunny.prototype = Object.create(Weather.prototype);
+
+
+
+Sunny.prototype.constructor = Sunny;
+
+
+
+// Define a display() method for the Sunny object
+
+
+
+Sunny.prototype.display = function () {
+
+ return `we are at location ${this.location} temperature here is ${this.temperature} degrees weather condition is ${this.conditions}`;
+
+};
+
+Sunny.prototype.setLocation = function (location) {
+
+ this.location = location;
+
+};
+
+Sunny.prototype.setTemperature = function (temperature) {
+
+ this.temperature = temperature;
+
+};
+
+
+
+// Define a constructor for a Rainy object that inherits from Weather
+
+
+
+function Rainy(location, temperature, precipitation, conditions = "rainy") {
+
+ Weather.call(this, location, temperature, conditions);
+
+
+
+ this.precipitation = precipitation;
+
+}
+
+
+
+// Set up prototype inheritance for Rainy
+
+
+
+Rainy.prototype = Object.create(Weather.prototype);
+
+
+
+Rainy.prototype.constructor = Rainy;
+
+
+
+// Define a display() method for the Rainy object
+
+
+
+Rainy.prototype.display = function () {
+
+ return `we are at location ${this.location} temperature here is ${this.temperature} degrees weather condition is ${this.conditions} and precipitation is ${this.precipitation}`;
+
+};
+
+Rainy.prototype.setLocation = function (location) {
+
+ this.location = location;
+
+};
+
+Rainy.prototype.setTemperature = function (temperature) {
+
+ this.temperature = temperature;
+
+};
+
+
+
+// create instances of the above objects and call their respective methods to verify their functionality
+
+
+
+export { Weather, Sunny, Rainy };

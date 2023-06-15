@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amar Akbar Anthony</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /*Singer constructor function */
+
+function Singer(name, location)
+{
+  this.name = name;
+  this.location = location;
+}
+
+Singer.prototype.sing = function()
+{
+  console.log(this.name+" is singing!");
+}
+
+/* Chef constructor function */
+function Chef(name, location)
+{
+  this.name = name;
+  this.location = location;
+}
+
+Chef.prototype.cook = function() 
+{
+  console.log(this.name + " is cooking!");
+}
+
+// Magician constructor function
+function Magician(name, location) {
+  this.name = name;
+  this.location = location;
+}
+
+Magician.prototype.performTrick = function()
+ {
+    console.log(this.name + " is performing a magic trick!");
+ }
+var amar = new Singer("Amar","Goa");
+var akbar = new Chef("Akbar","Mumbai");
+var anthony = new Magician("Anthony","Kashmir");
+amar.sing.call(akbar); 
+akbar.cook.call(anthony); 
+anthony.performTrick.call(amar); 
+</script>
